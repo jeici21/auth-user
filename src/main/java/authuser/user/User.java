@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity // creando tabla
-@Table(name = "users") // llamando tabla
+@Table(name = "users") // llamando tabla en la bd
 public class User {
     private @Id @GeneratedValue long id;
     private @NotBlank String username;
@@ -19,6 +19,7 @@ public class User {
     public User() {
     }
 
+    // constructor, recibe los valores del nuevo registro
     public User(@NotBlank String username, @NotBlank String password) {
         this.username = username;
         this.password = password;
@@ -54,7 +55,7 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) {// comparando los datos a registrar con los datos de la bd
         if (this == o)
             return true;
         if (!(o instanceof User))
@@ -64,13 +65,13 @@ public class User {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode() {// generando hash, un valor encriptado, del objeto a registrar
         return Objects.hash(id, username, password, loggedIn);
     }
 
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", username='" + username + '\'' + ", password='" + password + '\'' +
-                ", loggedIn=" + loggedIn + '}';
+                ", loggedIn=" + loggedIn + '}';// presentando los datos a registrar
     }
 }

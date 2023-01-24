@@ -1,4 +1,4 @@
-package authuser.user;
+package authuser.user.controllers;
 
 import java.util.List;
 
@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import authuser.user.entities.Status;
+import authuser.user.entities.User;
+import authuser.user.repositories.UserRepository;
 import jakarta.validation.Valid;
 
 @RestController // controla la funcionalidad de la api
@@ -36,7 +39,7 @@ public class UserController {
         for (User other : users) {
             if (other.equals(user)) {
                 user.setLoggedIn(true);// si el usuario existe, permite el login
-                userRepository.save(user);
+                // userRepository.save(user);
                 return Status.SUCCESS;
             }
         }
@@ -49,7 +52,7 @@ public class UserController {
         for (User other : users) {
             if (other.equals(user)) {
                 user.setLoggedIn(false);// si el usuario existe, permite cerrar sesión
-                userRepository.save(user);
+                //userRepository.save(user);
                 return Status.SUCCESS;
             }
         }
